@@ -126,11 +126,16 @@ public class LinkedList {
     // Use Floyd's Tortoise and Hare algorithm (two pointers).
     // ============================================================
     public boolean hasCycle() {
-        // TODO: implement
+        if (head == null) {return false;}
         Node t = head;
         Node h = head;
-        while (t != h) {
-            //
+        while (h != null && h.next != null) {
+            t = t.next;
+            h = h.next.next;
+            if (t == h) {
+                return true;
+            }
+
         }
         return false;
     }
@@ -143,8 +148,14 @@ public class LinkedList {
     // Use two pointers: one moves 1 step, one moves 2 steps.
     // ============================================================
     public String findMiddle() {
-        // TODO: implement
-        return null;
+        if (head == null) {return null;}
+        Node t = head;
+        Node h = head;
+        while (h != null && h.next != null) {
+            t = t.next;
+            h = h.next.next;
+        }
+        return t.data;
     }
 
     // ============================================================
@@ -152,7 +163,25 @@ public class LinkedList {
     // data where the cycle begins. Return null if no cycle.
     // ============================================================
     public String findCycleStart() {
+        if (head == null) {return null;}
+        Node t = head;
+        Node h = head;
+        while (h != null && h.next != null) {
+            t = t.next;
+            h = h.next.next;
+            if (t == h) {
+
+                Node s = head;
+                while (s != t) {
+                    s = s.next;
+                    t = t.next;
+                }
+                return s.data;
+            }
+        }
+
         // TODO: implement
+
         return null;
     }
 
