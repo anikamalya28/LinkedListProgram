@@ -23,7 +23,12 @@ public class CircularQueue {
 
     // Add to the back of the queue
     public void enqueue(int data) {
+        if (last == null) {return;}
         Node x = new Node(data);
+        Node first = last.next;
+        last.next = x;
+        x.next = first;
+        size++;
     }
 
     // Remove and return from the front of the queue
